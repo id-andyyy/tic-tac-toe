@@ -12,6 +12,12 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      gridTemplateColumns: {
+        "game-board": "repeat(3, 30px)",
+      },
+      gridTemplateRows: {
+        "game-board": "repear(3, 30px)",
+      },
     },
   },
   plugins: [],
