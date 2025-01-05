@@ -11,12 +11,16 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        bright: "#E502C7",
+        calm: "#E59102",
+        fresh: "#02E520",
+        modern: "#0255E5",
       },
       gridTemplateColumns: {
         "game-board": "repeat(3, 30px)",
       },
       gridTemplateRows: {
-        "game-board": "repear(3, 30px)",
+        "game-board": "repeat(3, 30px)",
       },
     },
   },
