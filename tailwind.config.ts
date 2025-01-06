@@ -15,6 +15,7 @@ export default {
         calm: "#E59102",
         fresh: "#02E520",
         modern: "#0255E5",
+        inactive: "#696969",
       },
       gridTemplateColumns: {
         "game-board": "repeat(3, 30px)",

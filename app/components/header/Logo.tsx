@@ -4,16 +4,12 @@ import Image from "next/image";
 import megaSrc from "@components/header/mega.svg";
 import shapesLogoSrc from "@components/header/shapes-logo.svg";
 import lettersLogoSrc from "@components/header/letters-logo.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export function Logo() {
-  const [logoSrc, setLogoSrc] = useState<string>(shapesLogoSrc);
+  const [logoSrc, setLogoSrc] = useState<string>(lettersLogoSrc);
 
-  useEffect(() => {
-    setLogoSrc(Math.random() < 0.5 ? shapesLogoSrc : lettersLogoSrc);
-  }, []);
-
-  function handleLogoClick() {
+  function handleLogoHover() {
     setLogoSrc((prevLogoSrc) => {
       if (prevLogoSrc === shapesLogoSrc) return lettersLogoSrc;
       return shapesLogoSrc;
@@ -21,13 +17,13 @@ export function Logo() {
   }
 
   return (
-    <div className="flex items-center mr-10">
-      <Image src={megaSrc} alt="MEGA" />
+    <div className="flex items-center mr-10 gap-1">
+      <Image src={megaSrc} alt="MEGA" onMouseEnter={handleLogoHover} />
       <Image
         src={logoSrc}
         alt="ХОДЫ"
-        className="ml-1 cursor-pointer"
-        onClick={handleLogoClick}
+        className="cursor-pointer"
+        onMouseEnter={handleLogoHover}
       />
     </div>
   );

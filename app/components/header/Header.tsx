@@ -1,13 +1,15 @@
-import { Logo } from "./Logo";
-import { Play } from "./Play";
-import { Profile } from "./Profile";
+import { Logo } from "@components/header/Logo";
+import { Menu } from "@components/header/Menu";
+import { Profile } from "@components/header/Profile";
 
 export function Header() {
   return (
-    <header className="flex h-20 px-7 bg-white items-center shadow-lg">
-      <Logo />
-      <Play />
-      <Profile />
+    <header className="h-20 px-7 bg-white shadow-lg">
+      <nav className="h-full flex items-center max-w-7xl mx-auto">
+        <Logo />
+        <Menu />
+        <Profile />
+      </nav>
     </header>
   );
 }
