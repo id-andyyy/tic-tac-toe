@@ -7,7 +7,11 @@ export function Header() {
       <nav className="h-full flex items-center max-w-7xl mx-auto">
         <Logo />
         <Menu />
-        <Profile className="ml-auto">id_andyyy</Profile>
+        <Profile
+          rating={124}
+          username="id_andyyy"
+          className="ml-auto"
+        ></Profile>
       </nav>
     </header>
   );

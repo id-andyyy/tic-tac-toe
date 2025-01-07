@@ -5,37 +5,42 @@ import { GameSymbol } from "@components/game/GameSymbol";
 import { ReactNode } from "react";
 import { useGameState } from "./useGameState";
 
-export function GameField() {
-  const { cells, currentPlayer, nextPlayer, handleCellClick } = useGameState();
+interface Props {
+  playersCount: number;
+}
+
+export function GameField({ playersCount }: Props) {
+  const { cells, currentPlayer, nextPlayer, handleCellClick } =
+    useGameState(playersCount);
 
   return (
-    <GameFieldLayout>
-      <GameFieldInfo currentPlayer={currentPlayer} nextPlayer={nextPlayer} />
-      <GameFieldGrid>
+    <Layout>
+      <Info currentPlayer={currentPlayer} nextPlayer={nextPlayer} />
+      <Grid>
         {cells.map((symbol, index) => (
-          <GameFieldCell key={index} onClick={() => handleCellClick(index)}>
+          <Cell key={index} onClick={() => handleCellClick(index)}>
             {symbol && <GameSymbol className="w-9 h-9" symbol={symbol} />}
-          </GameFieldCell>
+          </Cell>
         ))}
-      </GameFieldGrid>
-    </GameFieldLayout>
+      </Grid>
+    </Layout>
   );
 }
 
-interface GameFieldLayoutProps {
+interface LayoutProps {
   children: ReactNode;
 }
 
-function GameFieldLayout({ children }: GameFieldLayoutProps) {
+function Layout({ children }: LayoutProps) {
   return <div className="p-7 bg-white rounded-3xl shadow-md">{children}</div>;
 }
 
-interface GameFieldInfoProps {
+interface InfoProps {
   currentPlayer: string;
   nextPlayer: string;
 }
 
-function GameFieldInfo({ currentPlayer, nextPlayer }: GameFieldInfoProps) {
+function Info({ currentPlayer, nextPlayer }: InfoProps) {
   return (
     <div className="flex items-center justify-between mb-4">
       <div className="font-semibold">
@@ -53,11 +58,11 @@ function GameFieldInfo({ currentPlayer, nextPlayer }: GameFieldInfoProps) {
   );
 }
 
-interface GameFieldGridProps {
+interface GridProps {
   children: ReactNode;
 }
 
-function GameFieldGrid({ children }: GameFieldGridProps) {
+function Grid({ children }: GridProps) {
   return (
     <div className="grid grid-cols-[repeat(12,_60px)] grid-rows-[repeat(12,_60px)] pt-px pl-px mx-auto">
       {children}
@@ -65,12 +70,12 @@ function GameFieldGrid({ children }: GameFieldGridProps) {
   );
 }
 
-interface GameFieldCellProps {
+interface CellProps {
   children?: ReactNode;
   onClick: () => void;
 }
 
-function GameFieldCell({ children, onClick }: GameFieldCellProps) {
+function Cell({ children, onClick }: CellProps) {
   return (
     <button
       className="border border-gray-400 -mt-px -ml-px flex items-center justify-center"

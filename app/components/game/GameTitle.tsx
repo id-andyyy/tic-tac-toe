@@ -7,9 +7,10 @@ import clsx from "clsx";
 
 interface Props {
   className?: string;
+  playersCount: number;
 }
 
-export function GameTitle({ className }: Props) {
+export function GameTitle({ className, playersCount }: Props) {
   return (
     <div className={clsx(className, "")}>
       <Link
@@ -29,7 +30,7 @@ export function GameTitle({ className }: Props) {
           <StarIcon />
         </button>
         <button className="flex gap-1 items-center hover:text-black transition-colors">
-          <ProfileIcon /> 4
+          <ProfileIcon /> {playersCount}
         </button>
         <button className="flex gap-1 items-center hover:text-black transition-colors">
           <TimerIcon /> 1 мин на ход
