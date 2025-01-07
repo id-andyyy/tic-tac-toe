@@ -1,14 +1,13 @@
-import { Logo } from "@components/header/Logo";
-import { Menu } from "@components/header/Menu";
-import { Profile } from "@components/header/Profile";
+import { Logo, Menu } from "@components/header";
+import { Profile } from "@components/profile";
 
 export function Header() {
   return (
-    <header className="h-20 px-7 bg-white shadow-lg">
+    <header className="h-20 px-7 bg-white shadow-md">
       <nav className="h-full flex items-center max-w-7xl mx-auto">
         <Logo />
         <Menu />
-        <Profile />
+        <Profile className="ml-auto">id_andyyy</Profile>
       </nav>
     </header>
   );

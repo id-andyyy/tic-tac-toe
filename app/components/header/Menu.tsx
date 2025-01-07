@@ -1,4 +1,4 @@
-import { MenuItem } from "@components/header/MenuItem";
+import { MenuItem } from "@components/header";
 
 export function Menu() {
   return (
