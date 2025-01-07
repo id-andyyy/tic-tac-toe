@@ -3,16 +3,20 @@
 import { UiButton } from "@components/uikit";
 import { GameSymbol } from "@components/game/GameSymbol";
 import { ReactNode } from "react";
-import { useGameState } from "./useGameState";
 
 interface Props {
-  playersCount: number;
+  cells: (string | null)[];
+  currentPlayer: string;
+  nextPlayer: string;
+  handleCellClick: (index: number) => void;
 }
 
-export function GameField({ playersCount }: Props) {
-  const { cells, currentPlayer, nextPlayer, handleCellClick } =
-    useGameState(playersCount);
-
+export function GameField({
+  cells,
+  currentPlayer,
+  nextPlayer,
+  handleCellClick,
+}: Props) {
   return (
     <Layout>
       <Info currentPlayer={currentPlayer} nextPlayer={nextPlayer} />
@@ -32,7 +36,11 @@ interface LayoutProps {
 }
 
 function Layout({ children }: LayoutProps) {
-  return <div className="p-7 bg-white rounded-3xl shadow-md">{children}</div>;
+  return (
+    <div className="p-7 bg-white rounded-3xl shadow-md flex flex-col">
+      {children}
+    </div>
+  );
 }
 
 interface InfoProps {

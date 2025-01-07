@@ -4,6 +4,7 @@ import { GameSymbol } from "@components/game/GameSymbol";
 import { GAME_SYMBOLS } from "./constants";
 import { StaticImageData } from "next/image";
 import { SYMBOL_COLORS } from "../profile/constants";
+import { useEffect, useState } from "react";
 
 const players = [
   {
@@ -34,10 +35,11 @@ const players = [
 
 interface Props {
   className?: string;
+  currentPlayer: string;
   playersCount: number;
 }
 
-export function GameInfo({ className, playersCount }: Props) {
+export function GameInfo({ className, currentPlayer, playersCount }: Props) {
   return (
     <div
       className={clsx(
@@ -49,6 +51,7 @@ export function GameInfo({ className, playersCount }: Props) {
         <PlayerInfo
           key={player.id}
           isRight={index % 2 !== 0}
+          isTimer={currentPlayer == player.gameSymbol}
           playerInfo={player}
         />
       ))}
@@ -58,6 +61,7 @@ export function GameInfo({ className, playersCount }: Props) {
 
 interface PlayerInfoProps {
   isRight: boolean;
+  isTimer: boolean;
   playerInfo: {
     avatarSrc?: StaticImageData;
     gameSymbol: string;
@@ -66,7 +70,24 @@ interface PlayerInfoProps {
   };
 }
 
-function PlayerInfo({ isRight, playerInfo }: PlayerInfoProps) {
+function PlayerInfo({ isRight, isTimer, playerInfo }: PlayerInfoProps) {
+  const [seconds, setSeconds] = useState(60);
+
+  const minutesString = String(Math.floor(seconds / 60)).padStart(2, "0");
+  const secondsString = String(seconds % 60).padStart(2, "0");
+
+  useEffect(() => {
+    if (isTimer) {
+      const interval = setInterval(
+        () => setSeconds((prevSeconds) => Math.max(prevSeconds - 1, 0)),
+        1000,
+      );
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [isTimer]);
+
   return (
     <div
       className={clsx("flex items-center gap-3", isRight && "flex-row-reverse")}
@@ -84,7 +105,15 @@ function PlayerInfo({ isRight, playerInfo }: PlayerInfoProps) {
         </div>
       </div>
       <div className="w-px h-9 bg-slate-200"></div>
-      <div className="font-semibold text-xl">00:58</div>
+      <div
+        className={clsx(
+          "font-semibold text-xl w-[60px]",
+          seconds <= 10 && "text-orange-500",
+          isTimer || "text-gray-300",
+        )}
+      >
+        {minutesString}:{secondsString}
+      </div>
     </div>
   );
 }

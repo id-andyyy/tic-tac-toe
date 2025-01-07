@@ -33,7 +33,7 @@ export function GameTitle({ className, playersCount }: Props) {
           <ProfileIcon /> {playersCount}
         </button>
         <button className="flex gap-1 items-center hover:text-black transition-colors">
-          <TimerIcon /> 1 мин на ход
+          <TimerIcon /> 1 мин на игрока
         </button>
       </div>
     </div>
