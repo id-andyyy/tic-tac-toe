@@ -15,7 +15,7 @@ export function TriangleIcon({ className }: Props) {
       <path
         d="M2.5581 12.9306L8.5 2.63889L14.4419 12.9306H2.5581Z"
         stroke="#02E520"
-        stroke-width="2.63889"
+        strokeWidth="2.63889"
       />
     </svg>
   );

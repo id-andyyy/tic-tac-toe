@@ -13,7 +13,7 @@ interface Props {
 
 export function Profile({ children, className, userColor }: Props) {
   const displayedUsername = getShortUsername(14),
-    displayedEnlargedUsername = getShortUsername(9);
+    shortDisplayedUsername = getShortUsername(9);
   const [username, setUsername] = useState(displayedUsername);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -29,7 +29,7 @@ export function Profile({ children, className, userColor }: Props) {
       timeoutRef.current = null;
     }
 
-    setUsername(displayedEnlargedUsername);
+    setUsername(shortDisplayedUsername);
   };
 
   const handleMouseLeave = () => {

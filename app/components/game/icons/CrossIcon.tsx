@@ -6,24 +6,24 @@ export function CrossIcon({ className }: Props) {
   return (
     <svg
       className={className}
-      width="27"
-      height="27"
-      viewBox="0 0 27 27"
+      width="15"
+      height="16"
+      viewBox="0 0 15 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect
-        x="6.22559"
-        y="18.9529"
-        width="18"
-        height="2.71372"
-        transform="rotate(-45 6.22559 18.9529)"
+        x="0.0185547"
+        y="13.4639"
+        width="18.4116"
+        height="2.77578"
+        transform="rotate(-45 0.0185547 13.4639)"
         fill="#E502C7"
       />
       <rect
-        width="18"
-        height="2.71372"
-        transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 20.873 18.9529)"
+        width="18.4116"
+        height="2.77578"
+        transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 14.9814 13.4639)"
         fill="#E502C7"
       />
     </svg>
