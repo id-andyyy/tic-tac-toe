@@ -108,7 +108,7 @@ function PlayerInfo({ isRight, isTimer, playerInfo }: PlayerInfoProps) {
       <div
         className={clsx(
           "font-semibold text-xl w-[60px]",
-          seconds <= 10 && "text-orange-500",
+          seconds <= 10 && "text-red-500",
           isTimer || "text-gray-300",
         )}
       >

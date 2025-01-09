@@ -3,12 +3,14 @@
 import { UiButton } from "@components/uikit";
 import { GameSymbol } from "@components/game/GameSymbol";
 import { ReactNode } from "react";
+import clsx from "clsx";
 
 interface Props {
   cells: (string | null)[];
   currentPlayer: string;
   nextPlayer: string;
   handleCellClick: (index: number) => void;
+  winnerIndexes: number[] | undefined;
 }
 
 export function GameField({
@@ -16,13 +18,18 @@ export function GameField({
   currentPlayer,
   nextPlayer,
   handleCellClick,
+  winnerIndexes,
 }: Props) {
   return (
     <Layout>
       <Info currentPlayer={currentPlayer} nextPlayer={nextPlayer} />
       <Grid>
         {cells.map((symbol, index) => (
-          <Cell key={index} onClick={() => handleCellClick(index)}>
+          <Cell
+            key={index}
+            onClick={() => handleCellClick(index)}
+            isWinner={winnerIndexes?.includes(index)}
+          >
             {symbol && <GameSymbol className="w-9 h-9" symbol={symbol} />}
           </Cell>
         ))}
@@ -80,13 +87,17 @@ function Grid({ children }: GridProps) {
 
 interface CellProps {
   children?: ReactNode;
+  isWinner: boolean | undefined;
   onClick: () => void;
 }
 
-function Cell({ children, onClick }: CellProps) {
+function Cell({ children, isWinner, onClick }: CellProps) {
   return (
     <button
-      className="border border-gray-400 -mt-px -ml-px flex items-center justify-center"
+      className={clsx(
+        "border border-gray-400 -mt-px -ml-px flex items-center justify-center",
+        isWinner && "bg-red-600/20",
+      )}
       onClick={onClick}
     >
       {children}

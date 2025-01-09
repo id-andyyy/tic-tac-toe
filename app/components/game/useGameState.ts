@@ -1,19 +1,21 @@
 import { useState } from "react";
-import { GAME_SYMBOLS, PLAYERS_ORDER } from "@components/game/constants";
+import { GAME_SYMBOLS } from "@components/game/constants";
+import { getNextPlayer, getWinnerIndexes } from "./model";
 
-function getNextPlayer(currentPlayer: string, playersCount: number) {
-  const nextPlayerIndex = PLAYERS_ORDER.indexOf(currentPlayer) + 1;
-  return (
-    PLAYERS_ORDER.slice(0, playersCount)[nextPlayerIndex] ?? PLAYERS_ORDER[0]
-  );
-}
-
-export function useGameState(playersCount: number) {
+export function useGameState(playersCount: number): {
+  cells: (string | null)[];
+  currentPlayer: string;
+  nextPlayer: string;
+  handleCellClick: (index: number) => void;
+  winnerIndexes: number[] | undefined;
+} {
   const [{ cells, currentPlayer }, setGameState] = useState(() => ({
     cells: new Array(12 * 12).fill(null),
     currentPlayer: GAME_SYMBOLS.CROSS,
   }));
   const nextPlayer = getNextPlayer(currentPlayer, playersCount);
+
+  const winnerIndexes = getWinnerIndexes(cells, 5, 12);
 
   function handleCellClick(index: number) {
     setGameState((prevGameState) => {
@@ -35,5 +37,6 @@ export function useGameState(playersCount: number) {
     currentPlayer,
     nextPlayer,
     handleCellClick,
+    winnerIndexes,
   };
 }

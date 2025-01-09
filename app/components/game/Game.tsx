@@ -8,7 +8,7 @@ import { useGameState } from "@components/game/useGameState";
 
 export function Game() {
   const [playersCount] = useState(2);
-  const { cells, currentPlayer, nextPlayer, handleCellClick } =
+  const { cells, currentPlayer, nextPlayer, handleCellClick, winnerIndexes } =
     useGameState(playersCount);
 
   return (
@@ -24,6 +24,7 @@ export function Game() {
         currentPlayer={currentPlayer}
         nextPlayer={nextPlayer}
         handleCellClick={handleCellClick}
+        winnerIndexes={winnerIndexes}
       />
     </>
   );
