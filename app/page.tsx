@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="bg-slate-50 min-h-screen">
       <Header />
-      <main className="mx-auto max-w-[780px] pt-4">
+      <main className="mx-auto max-w-[680px] pt-4">
         <Game />
       </main>
     </div>

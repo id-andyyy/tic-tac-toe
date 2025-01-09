@@ -7,15 +7,15 @@ import { useState } from "react";
 import { useGameState } from "@components/game/useGameState";
 
 export function Game() {
-  const [playersCount] = useState(4);
+  const [playersCount] = useState(2);
   const { cells, currentPlayer, nextPlayer, handleCellClick } =
     useGameState(playersCount);
 
   return (
     <>
-      <GameTitle className="mb-6" playersCount={playersCount} />
+      <GameTitle className="mb-4" playersCount={playersCount} />
       <GameInfo
-        className="mb-6"
+        className="mb-4"
         currentPlayer={currentPlayer}
         playersCount={playersCount}
       />

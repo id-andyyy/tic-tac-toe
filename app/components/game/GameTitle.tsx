@@ -24,7 +24,7 @@ export function GameTitle({ className, playersCount }: Props) {
           На главную
         </span>
       </Link>
-      <h1 className="font-semibold text-5xl mb-3">Игра #72345</h1>
+      <h1 className="font-semibold text-4xl mb-3">Игра #72345</h1>
       <div className="flex items-center gap-3 text-inactive font-medium text-sm">
         <button className="hover:text-black transition-colors">
           <StarIcon />

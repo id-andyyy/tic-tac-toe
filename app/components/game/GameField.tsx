@@ -37,7 +37,7 @@ interface LayoutProps {
 
 function Layout({ children }: LayoutProps) {
   return (
-    <div className="p-7 bg-white rounded-3xl shadow-md flex flex-col">
+    <div className="px-7 py-5 bg-white rounded-3xl shadow-md flex flex-col">
       {children}
     </div>
   );
@@ -72,7 +72,7 @@ interface GridProps {
 
 function Grid({ children }: GridProps) {
   return (
-    <div className="grid grid-cols-[repeat(12,_60px)] grid-rows-[repeat(12,_60px)] pt-px pl-px mx-auto">
+    <div className="grid grid-cols-[repeat(12,_52px)] grid-rows-[repeat(12,_52px)] pt-px pl-px mx-auto">
       {children}
     </div>
   );

@@ -43,7 +43,7 @@ export function GameInfo({ className, currentPlayer, playersCount }: Props) {
   return (
     <div
       className={clsx(
-        "p-7 bg-white rounded-3xl shadow-md flex justify-between flex-wrap gap-x-10 gap-y-5",
+        "p-7 bg-white rounded-3xl shadow-md flex justify-between flex-wrap gap-x-9 gap-y-5",
         className,
       )}
     >

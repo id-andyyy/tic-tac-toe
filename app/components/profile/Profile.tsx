@@ -23,7 +23,7 @@ export function Profile({
     <button
       className={clsx(
         className,
-        "flex items-center text-start gap-4 w-64 group",
+        "flex items-center text-start gap-4 w-52 group",
       )}
     >
       <Image src={avatarSrc} alt="" width={50} height={50} />
