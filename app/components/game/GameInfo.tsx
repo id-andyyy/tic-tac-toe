@@ -115,7 +115,7 @@ function PlayerInfo({
     >
       <div className="relative">
         <Profile
-          className="max-h-12"
+          className="max-h-12 w-52"
           avatarSrc={playerInfo.avatarSrc}
           rating={playerInfo.rating}
           userColor={SYMBOL_COLORS[playerInfo.gameSymbol]}

@@ -21,10 +21,7 @@ export function Profile({
 }: Props) {
   return (
     <button
-      className={clsx(
-        className,
-        "flex items-center text-start gap-4 w-52 group",
-      )}
+      className={clsx(className, "flex items-center text-start gap-4 group")}
     >
       <Image src={avatarSrc} alt="" width={50} height={50} />
       <div className="overflow-hidden">

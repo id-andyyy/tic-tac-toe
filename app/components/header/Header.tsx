@@ -8,9 +8,9 @@ export function Header() {
         <Logo />
         <Menu />
         <Profile
+          className="ml-auto w-64"
           rating={124}
           username="id_andyyy"
-          className="ml-auto"
         ></Profile>
       </nav>
     </header>
