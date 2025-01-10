@@ -43,8 +43,8 @@ export function Game() {
           </div>
         </UiModal.Body>
         <UiModal.Footer>
-          <UiButton type="modern">На главную</UiButton>
-          <UiButton type="inactiveBorder">Вернуться на поле</UiButton>
+          <UiButton type="modern">Далее</UiButton>
+          <UiButton type="inactiveBorder">Вернуться</UiButton>
         </UiModal.Footer>
       </UiModal>
       <GameField

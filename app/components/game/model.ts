@@ -4,7 +4,7 @@ export function getNextPlayer(
   currentPlayer: string,
   playersCount: number,
   playersTimeOver: string[],
-) {
+): string {
   const slicedPlayersOrder = PLAYERS_ORDER.slice(0, playersCount).filter(
     (symbol) => !playersTimeOver.includes(symbol),
   );

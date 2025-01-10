@@ -9,7 +9,7 @@ import { useState } from "react";
 export function Logo() {
   const [logoSrc, setLogoSrc] = useState<string>(lettersLogoSrc);
 
-  function handleLogoHover() {
+  function handleLogoHover(): void {
     setLogoSrc((prevLogoSrc) => {
       if (prevLogoSrc === shapesLogoSrc) return lettersLogoSrc;
       return shapesLogoSrc;

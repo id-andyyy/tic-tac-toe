@@ -20,7 +20,7 @@ export function UiModal({
 }: Props) {
   if (!isOpen) return null;
 
-  function handleClick(e: React.MouseEvent<HTMLDivElement>) {
+  function handleClick(e: React.MouseEvent<HTMLDivElement>): void {
     if ((e.target as Element).closest("[data-id=modal]")) return;
     onClose();
   }
