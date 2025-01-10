@@ -86,7 +86,7 @@ function PlayerInfo({
   onTimeOver,
   playerInfo,
 }: PlayerInfoProps) {
-  const [seconds, setSeconds] = useState(3);
+  const [seconds, setSeconds] = useState(120);
 
   const minutesString = String(Math.floor(seconds / 60)).padStart(2, "0");
   const secondsString = String(seconds % 60).padStart(2, "0");

@@ -32,6 +32,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${jost.className} antialiased`}
       >
+        <div id="modals"></div>
         {children}
       </body>
     </html>
