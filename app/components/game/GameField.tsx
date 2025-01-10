@@ -11,6 +11,7 @@ interface Props {
   nextPlayer: string;
   handleCellClick: (index: number) => void;
   winnerIndexes: number[] | undefined;
+  winnerSymbol: string | null;
 }
 
 export function GameField({
@@ -19,6 +20,7 @@ export function GameField({
   nextPlayer,
   handleCellClick,
   winnerIndexes,
+  winnerSymbol,
 }: Props) {
   return (
     <Layout>
@@ -27,6 +29,7 @@ export function GameField({
         {cells.map((symbol, index) => (
           <Cell
             key={index}
+            disabled={!!winnerSymbol}
             onClick={() => handleCellClick(index)}
             isWinner={winnerIndexes?.includes(index)}
           >
@@ -87,13 +90,15 @@ function Grid({ children }: GridProps) {
 
 interface CellProps {
   children?: ReactNode;
+  disabled: boolean;
   isWinner: boolean | undefined;
   onClick: () => void;
 }
 
-function Cell({ children, isWinner, onClick }: CellProps) {
+function Cell({ children, disabled, isWinner, onClick }: CellProps) {
   return (
     <button
+      disabled={disabled}
       className={clsx(
         "border border-gray-400 -mt-px -ml-px flex items-center justify-center",
         isWinner && "bg-red-600/20",

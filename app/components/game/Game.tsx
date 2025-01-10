@@ -5,11 +5,19 @@ import { GameInfo } from "@components/game/GameInfo";
 import { GameField } from "@components/game/GameField";
 import { useState } from "react";
 import { useGameState } from "@components/game/useGameState";
+import { GameSymbol } from "./GameSymbol";
 
 export function Game() {
   const [playersCount] = useState(2);
-  const { cells, currentPlayer, nextPlayer, handleCellClick, winnerIndexes } =
-    useGameState(playersCount);
+  const {
+    cells,
+    currentPlayer,
+    nextPlayer,
+    handleCellClick,
+    handlePlayerTimeOver,
+    winnerIndexes,
+    winnerSymbol,
+  } = useGameState(playersCount);
 
   return (
     <>
@@ -17,14 +25,18 @@ export function Game() {
       <GameInfo
         className="mb-4"
         currentPlayer={currentPlayer}
+        isWinner={!!winnerSymbol}
+        onPlayerTimeOver={handlePlayerTimeOver}
         playersCount={playersCount}
       />
+      <div>{winnerSymbol && <GameSymbol symbol={winnerSymbol} />}</div>
       <GameField
         cells={cells}
         currentPlayer={currentPlayer}
         nextPlayer={nextPlayer}
         handleCellClick={handleCellClick}
         winnerIndexes={winnerIndexes}
+        winnerSymbol={winnerSymbol}
       />
     </>
   );

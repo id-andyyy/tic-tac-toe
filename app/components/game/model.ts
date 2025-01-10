@@ -1,10 +1,16 @@
 import { PLAYERS_ORDER } from "./constants";
 
-export function getNextPlayer(currentPlayer: string, playersCount: number) {
-  const nextPlayerIndex = PLAYERS_ORDER.indexOf(currentPlayer) + 1;
-  return (
-    PLAYERS_ORDER.slice(0, playersCount)[nextPlayerIndex] ?? PLAYERS_ORDER[0]
+export function getNextPlayer(
+  currentPlayer: string,
+  playersCount: number,
+  playersTimeOver: string[],
+) {
+  const slicedPlayersOrder = PLAYERS_ORDER.slice(0, playersCount).filter(
+    (symbol) => !playersTimeOver.includes(symbol),
   );
+
+  const nextPlayerIndex = slicedPlayersOrder.indexOf(currentPlayer) + 1;
+  return slicedPlayersOrder[nextPlayerIndex] ?? slicedPlayersOrder[0];
 }
 
 export function getWinnerIndexes(
@@ -27,20 +33,22 @@ export function getWinnerIndexes(
     const result: number[][] = [[], [], [], []];
 
     for (let i = 0; i < searchLength; i++) {
-      result[0].push(i - halfSearchLength + index);
-      result[1].push(
-        fieldSize * (i - halfSearchLength) + (i - halfSearchLength) + index,
-      );
-      result[2].push(
-        -fieldSize * (i - halfSearchLength) + (i - halfSearchLength) + index,
-      );
-      result[3].push(fieldSize * (i - halfSearchLength) + index);
+      result[0].push(i - gap + index);
+      result[1].push(fieldSize * (i - gap) + (i - gap) + index);
+      result[2].push(-fieldSize * (i - gap) + (i - gap) + index);
+      result[3].push(fieldSize * (i - gap) + index);
     }
 
+    const x = index % fieldSize;
+    if (x < gap || x >= fieldSize - gap) {
+      result.shift();
+      result.shift();
+      result.shift();
+    }
     return result;
   }
 
-  const halfSearchLength = Math.floor(searchLength / 2);
+  const gap = Math.floor(searchLength / 2);
 
   for (let i = 0; i < cells.length; i++) {
     if (!cells[i]) continue;

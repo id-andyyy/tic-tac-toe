@@ -36,10 +36,18 @@ const players = [
 interface Props {
   className?: string;
   currentPlayer: string;
+  isWinner: boolean;
+  onPlayerTimeOver: (symbol: string) => void;
   playersCount: number;
 }
 
-export function GameInfo({ className, currentPlayer, playersCount }: Props) {
+export function GameInfo({
+  className,
+  currentPlayer,
+  isWinner,
+  onPlayerTimeOver,
+  playersCount,
+}: Props) {
   return (
     <div
       className={clsx(
@@ -51,7 +59,8 @@ export function GameInfo({ className, currentPlayer, playersCount }: Props) {
         <PlayerInfo
           key={player.id}
           isRight={index % 2 !== 0}
-          isTimer={currentPlayer == player.gameSymbol}
+          isTimer={currentPlayer == player.gameSymbol && !isWinner}
+          onTimeOver={() => onPlayerTimeOver(player.gameSymbol)}
           playerInfo={player}
         />
       ))}
@@ -62,6 +71,7 @@ export function GameInfo({ className, currentPlayer, playersCount }: Props) {
 interface PlayerInfoProps {
   isRight: boolean;
   isTimer: boolean;
+  onTimeOver: () => void;
   playerInfo: {
     avatarSrc?: StaticImageData;
     gameSymbol: string;
@@ -70,8 +80,13 @@ interface PlayerInfoProps {
   };
 }
 
-function PlayerInfo({ isRight, isTimer, playerInfo }: PlayerInfoProps) {
-  const [seconds, setSeconds] = useState(60);
+function PlayerInfo({
+  isRight,
+  isTimer,
+  onTimeOver,
+  playerInfo,
+}: PlayerInfoProps) {
+  const [seconds, setSeconds] = useState(3);
 
   const minutesString = String(Math.floor(seconds / 60)).padStart(2, "0");
   const secondsString = String(seconds % 60).padStart(2, "0");
@@ -87,6 +102,12 @@ function PlayerInfo({ isRight, isTimer, playerInfo }: PlayerInfoProps) {
       };
     }
   }, [isTimer]);
+
+  useEffect(() => {
+    if (seconds === 0) {
+      onTimeOver();
+    }
+  }, [seconds]);
 
   return (
     <div
